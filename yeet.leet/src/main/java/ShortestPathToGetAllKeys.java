@@ -125,10 +125,10 @@ public class ShortestPathToGetAllKeys {
                 visitedCells.add(location);
                 //enqueue north south east west
                 int distanceTraveled = data.distanceTraveled;
-                queue.add(new Data(row - 1, col, new HashSet<>(visitedCells), new HashSet<>(keys), distanceTraveled + 1));
-                queue.add(new Data(row + 1, col, new HashSet<>(visitedCells), new HashSet<>(keys), distanceTraveled + 1));
-                queue.add(new Data(row, col + 1, new HashSet<>(visitedCells), new HashSet<>(keys), distanceTraveled + 1));
-                queue.add(new Data(row, col - 1, new HashSet<>(visitedCells), new HashSet<>(keys), distanceTraveled + 1));
+                queue.add(new Data(row - 1, col, (visitedCells), new HashSet<>(keys), distanceTraveled + 1));
+                queue.add(new Data(row + 1, col, (visitedCells), new HashSet<>(keys), distanceTraveled + 1));
+                queue.add(new Data(row, col + 1, (visitedCells), new HashSet<>(keys), distanceTraveled + 1));
+                queue.add(new Data(row, col - 1, (visitedCells), new HashSet<>(keys), distanceTraveled + 1));
 
             } else if (isKey(currentChar)) {
                 //is key
