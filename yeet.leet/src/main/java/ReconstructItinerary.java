@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.concurrent.LinkedBlockingDeque;
 import java.util.stream.Collectors;
 
 /**
@@ -39,6 +40,9 @@ public class ReconstructItinerary {
     private Set<Node> visited;
     private Stack<Node> stack;
     private Set<Node> unvisited;
+    private int count = 0;
+    private Set<String> usedTickets;
+    private Set<String> unusedTickets;
 
     static class Node {
         String airport;
@@ -57,13 +61,12 @@ public class ReconstructItinerary {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             Node node = (Node) o;
-            return Objects.equals(airport, node.airport) &&
-                    Objects.equals(adjList, node.adjList);
+            return Objects.equals(airport, node.airport);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(airport, adjList);
+            return Objects.hash(airport);
         }
     }
 
@@ -98,6 +101,7 @@ public class ReconstructItinerary {
         visited = new HashSet<>();
         unvisited = new HashSet<>();
         unvisited.addAll(airportsToNode.values());
+        //you need an unusedTickets
 
         stack = new Stack<>();
 
@@ -128,6 +132,7 @@ public class ReconstructItinerary {
         this.unvisited.remove(node);
 
         for (Node adjAirport : node.adjList) {
+            usedTickets.add(node.airport + ":" + adjAirport);
             topologicalSort(adjAirport);
         }
 

@@ -25,5 +25,9 @@ public class ReconstructItineraryTest {
 // * Output: ["JFK","ATL","JFK","SFO","ATL","SFO"]
     @Test
     public void findItineraryTwo() {
+        List<List<String>> tickets = Arrays.asList(Arrays.asList("JFK", "SFO"), Arrays.asList("JFK", "ATL"), Arrays.asList("SFO", "ATL"), Arrays.asList("ATL", "JFK"), Arrays.asList("ATL", "SFO"));
+        List<String> expectItinerary = Arrays.asList("JFK", "ATL", "JFK", "SFO", "ATL", "SFO");
+        List<String> actualItinerary = new ReconstructItinerary().findItinerary(tickets);
+        Assert.assertEquals(expectItinerary, actualItinerary);
     }
 }
